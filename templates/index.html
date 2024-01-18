@@ -1,6 +1,9 @@
+{%load static%}
 <html>
     <head>
     </head>
     <body>
+        {% csrf_token %}
+        <h1>{{ jogador }}</h1>
     </body>
 </html>
