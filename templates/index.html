@@ -4,6 +4,17 @@
     </head>
     <body>
         {% csrf_token %}
-        <h1>{{ jogador }}</h1>
+        <h1>Lideres em Pontos por Jogo na temporada</h1>
+        <div>
+            <h3>Primeiro Lugar: {{ jogador.0 }} - {{ jogador.1 }} Pontos por Jogo</h3>
+
+            <h3>Segundo Lugar: {{ jogador1.0 }} - {{ jogador1.1 }} Pontos por Jogo</h3>
+
+            <h3>Terceiro Lugar: {{ jogador2.0 }} - {{ jogador2.1 }} Pontos por Jogo</h3>
+
+            <h3>Quarto Lugar: {{ jogador3.0 }} - {{ jogador3.1 }} Pontos por Jogo</h3>
+
+            <h3>Quinto Lugar: {{ jogador4.0 }} - {{ jogador4.1 }} Pontos por Jogo</h3>
+        </div>
     </body>
 </html>
