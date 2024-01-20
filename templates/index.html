@@ -4,8 +4,8 @@
     </head>
     <body>
         {% csrf_token %}
-        <h1>Lideres em Pontos por Jogo na temporada</h1>
         <div>
+            <h1>Lideres em Pontos por Jogo na temporada</h1>
             <h3>Primeiro Lugar: {{ jogador.0 }} - {{ jogador.1 }} Pontos por Jogo</h3>
 
             <h3>Segundo Lugar: {{ jogador1.0 }} - {{ jogador1.1 }} Pontos por Jogo</h3>
@@ -17,12 +17,23 @@
             <h3>Quinto Lugar: {{ jogador4.0 }} - {{ jogador4.1 }} Pontos por Jogo</h3>
         </div>
 
-        <h1> Lideres em Rebotes por jogo na temporada</h1>
         <div>
+            <h1> Lideres em Rebotes por jogo na temporada</h1>
             <h3>Primeiro Lugar: {{ jogador_reb.0 }} - {{ jogador_reb.1 }} Rebotes por jogo</h3>
             <h3>Segundo Lugar: {{ jogador_reb1.0 }} - {{ jogador_reb1.1 }} Rebotes por jogo</h3>
             <h3>Terceiro Lugar: {{ jogador_reb2.0 }} - {{ jogador_reb2.1 }} Rebotes por jogo</h3>
             <h3>Quarto Lugar: {{ jogador_reb3.0 }} - {{ jogador_reb3.1 }} Rebotes por jogo</h3>
             <h3>Quinto Lugar: {{ jogador_reb4.0 }} - {{ jogador_reb4.1 }} Rebotes por jogo</h3>
+        </div>
+
+        <div>
+            <h1> Lideres em Assistencias por jogo na temporada</h1>
+            <h3>Primeiro Lugar: {{ jogador_assist.0 }} - {{ jogador_assist.1 }} Assistencias por jogo</h3>
+            <h3>Segundo Lugar: {{ jogador_assist1.0 }} - {{ jogador_assist1.1 }} Assistencias por jogo</h3>
+            <h3>Terceiro Lugar: {{ jogador_assist2.0 }} - {{ jogador_assist2.1 }} Assistencias por jogo</h3>
+            <h3>Quarto Lugar: {{ jogador_assist3.0 }} - {{ jogador_assist3.1 }} Assistencias por jogo</h3>
+            <h3>Quinto Lugar: {{ jogador_assist4.0 }} - {{ jogador_assist4.1 }} Assistencias por jogo</h3>
+        </div>
+
     </body>
 </html>
