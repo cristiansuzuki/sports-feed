@@ -44,6 +44,7 @@ def index(request):
     jogador_assist4 = (df_assistencias.PLAYER[4], df_assistencias.AST[4])
 
 
+    # roubos de bola
     data_steals = endpoints.leagueleaders.LeagueLeaders(season=SeasonAll.current_season, stat_category_abbreviation='STL', per_mode48='PerGame')
     df_steals = data_steals.league_leaders.get_data_frame()
 
@@ -53,8 +54,20 @@ def index(request):
     jogador_steal3 = (df_steals.PLAYER[3], df_steals.STL[3])
     jogador_steal4 = (df_steals.PLAYER[4], df_steals.STL[4])
 
+    # tocos
+    data_tocos = endpoints.leagueleaders.LeagueLeaders(season=SeasonAll.current_season, stat_category_abbreviation='BLK', per_mode48='PerGame')
+    df_tocos = data_tocos.league_leaders.get_data_frame()
+
+    jogador_toco = (df_tocos.PLAYER[0], df_tocos.BLK[0])
+    jogador_toco1 = (df_tocos.PLAYER[1], df_tocos.BLK[1])
+    jogador_toco2 = (df_tocos.PLAYER[2], df_tocos.BLK[2])
+    jogador_toco3 = (df_tocos.PLAYER[3], df_tocos.BLK[3])
+    jogador_toco4 = (df_tocos.PLAYER[4], df_tocos.BLK[4])
+
+
     return render(request, 'index.html', {'jogador': jogador, 'jogador1': jogador1,'jogador2': jogador2,'jogador3': jogador3,'jogador4': jogador4,
     'jogador_reb':jogador_reb, 'jogador_reb1':jogador_reb1, 'jogador_reb2':jogador_reb2, 'jogador_reb3':jogador_reb3, 'jogador_reb4':jogador_reb4, 
     'jogador_assist': jogador_assist, 'jogador_assist1': jogador_assist1, 'jogador_assist2': jogador_assist2, 'jogador_assist3': jogador_assist3, 'jogador_assist4': jogador_assist4,
     'jogador_steal': jogador_steal, 'jogador_steal1': jogador_steal1, 'jogador_steal2': jogador_steal2, 'jogador_steal3': jogador_steal3, 'jogador_steal4': jogador_steal4, 
+    'jogador_toco': jogador_toco, 'jogador_toco1': jogador_toco1, 'jogador_toco2': jogador_toco2, 'jogador_toco3': jogador_toco3, 'jogador_toco4': jogador_toco4
     })
