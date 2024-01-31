@@ -6,22 +6,11 @@ from nba_api.stats.static import players
 from nba_api.stats.library.parameters import SeasonAll
 from nba_api.stats import endpoints
 from datetime import timedelta, datetime, date
+from .models import *
 # Create your views here.
 
 
 def index(request):
-    data_pontos = endpoints.leagueleaders.LeagueLeaders(season=SeasonAll.current_season, per_mode48='PerGame')
-        # aqui é feito uma consulta no Endpoint da nba-api, trazendo os líderes em PONTOS da TEMPORADA REGULAR e armazenando em uma variável 
-
-    df_pontos = data_pontos.league_leaders.get_data_frame()
-    # o Pandas aqui trata os dados que foram pegados da API
-
-    jogador = (df_pontos.PLAYER[0], df_pontos.PTS[0])
-    jogador1 = (df_pontos.PLAYER[1], df_pontos.PTS[1])
-    jogador2 = (df_pontos.PLAYER[2], df_pontos.PTS[2])
-    jogador3 = (df_pontos.PLAYER[3], df_pontos.PTS[3])
-    jogador4 = (df_pontos.PLAYER[4], df_pontos.PTS[4])
-    # nesse bloco acima, armazenei as variáveis relacionadas as suas respectivas posições dos jogadores
 
     # esse bloco abaixo segue a mesma ideia, so que para rebotes ao inves de pontos
     data_rebotes = endpoints.leagueleaders.LeagueLeaders(season=SeasonAll.current_season, stat_category_abbreviation='REB', per_mode48='PerGame')
@@ -65,9 +54,33 @@ def index(request):
     jogador_toco4 = (df_tocos.PLAYER[4], df_tocos.BLK[4])
 
 
-    return render(request, 'index.html', {'jogador': jogador, 'jogador1': jogador1,'jogador2': jogador2,'jogador3': jogador3,'jogador4': jogador4,
+    posts = Post.objects.all()
+
+    return render(request, 'index.html',{
     'jogador_reb':jogador_reb, 'jogador_reb1':jogador_reb1, 'jogador_reb2':jogador_reb2, 'jogador_reb3':jogador_reb3, 'jogador_reb4':jogador_reb4, 
     'jogador_assist': jogador_assist, 'jogador_assist1': jogador_assist1, 'jogador_assist2': jogador_assist2, 'jogador_assist3': jogador_assist3, 'jogador_assist4': jogador_assist4,
     'jogador_steal': jogador_steal, 'jogador_steal1': jogador_steal1, 'jogador_steal2': jogador_steal2, 'jogador_steal3': jogador_steal3, 'jogador_steal4': jogador_steal4, 
-    'jogador_toco': jogador_toco, 'jogador_toco1': jogador_toco1, 'jogador_toco2': jogador_toco2, 'jogador_toco3': jogador_toco3, 'jogador_toco4': jogador_toco4
+    'jogador_toco': jogador_toco, 'jogador_toco1': jogador_toco1, 'jogador_toco2': jogador_toco2, 'jogador_toco3': jogador_toco3, 'jogador_toco4': jogador_toco4,
+    'posts': posts
     })
+
+
+def pontos(request):
+    data_pontos = endpoints.leagueleaders.LeagueLeaders(season=SeasonAll.current_season, per_mode48='PerGame')
+    # aqui é feito uma consulta no Endpoint da nba-api, trazendo os líderes em PONTOS da TEMPORADA REGULAR e armazenando em uma variável 
+
+    df_pontos = data_pontos.league_leaders.get_data_frame()
+    # o Pandas aqui trata os dados que foram pegados da API
+
+    jogador = (df_pontos.PLAYER[0], df_pontos.PTS[0])
+    jogador1 = (df_pontos.PLAYER[1], df_pontos.PTS[1])
+    jogador2 = (df_pontos.PLAYER[2], df_pontos.PTS[2])
+    jogador3 = (df_pontos.PLAYER[3], df_pontos.PTS[3])
+    jogador4 = (df_pontos.PLAYER[4], df_pontos.PTS[4])
+    # nesse bloco acima, armazenei as variáveis relacionadas as suas respectivas posições dos jogadores
+
+    pontuadores = jogador, jogador1, jogador2, jogador3, jogador4
+
+    post_pontos = Post.objects.create(titulo='Lideres em PPG', conteudo=pontuadores)
+
+    return render(request, 'index.html',{ 'jogador': jogador, 'jogador1': jogador1,'jogador2': jogador2,'jogador3': jogador3,'jogador4': jogador4, 'pontuadores': pontuadores})
