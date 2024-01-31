@@ -73,8 +73,16 @@ def index(request):
     #função que irá criar um objeto com os dados tratados na Model
     def pontos():
         pontuadores = jogador, jogador1, jogador2, jogador3, jogador4
-        print(type(pontuadores))
-        post_pontos = Post.objects.create(titulo='Lideres em PPG', conteudo=pontuadores)
+        valores_individuais = []
+
+        for nome, pontuacao in pontuadores:
+            valores_individuais.append(nome)
+            valores_individuais.append(pontuacao)
+        top = valores_individuais[0], valores_individuais[1], valores_individuais[2], valores_individuais[3], valores_individuais[4], valores_individuais[5]
+        string_top = "".format(*top)
+        print(string_top)
+
+        post_pontos = Post.objects.create(titulo='Lideres em Pontos Por Jogo', conteudo=string_top)
         return post_pontos
 
 
