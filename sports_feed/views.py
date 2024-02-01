@@ -102,17 +102,11 @@ def index(request):
         post_pontos = Post.objects.create(titulo='Lideres em Pontos Por Jogo', conteudo=individual)
         return post_pontos
 
-
-    a = 1
+    # aqui sera inserido a verificação do dia da semana, dependendo do dia será chamada uma função semelhante a acima para ser criado um objeto e postado no Blog de forma automatica.
+    a = 2
 
     if a == 1:
         pontos()
 
 
-    return render(request, 'index.html',{
-    'jogador_reb':jogador_reb, 'jogador_reb1':jogador_reb1, 'jogador_reb2':jogador_reb2, 'jogador_reb3':jogador_reb3, 'jogador_reb4':jogador_reb4, 
-    'jogador_assist': jogador_assist, 'jogador_assist1': jogador_assist1, 'jogador_assist2': jogador_assist2, 'jogador_assist3': jogador_assist3, 'jogador_assist4': jogador_assist4,
-    'jogador_steal': jogador_steal, 'jogador_steal1': jogador_steal1, 'jogador_steal2': jogador_steal2, 'jogador_steal3': jogador_steal3, 'jogador_steal4': jogador_steal4, 
-    'jogador_toco': jogador_toco, 'jogador_toco1': jogador_toco1, 'jogador_toco2': jogador_toco2, 'jogador_toco3': jogador_toco3, 'jogador_toco4': jogador_toco4,
-    'posts': posts
-    })
+    return render(request, 'index.html',{'posts': posts})
