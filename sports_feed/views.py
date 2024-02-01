@@ -72,23 +72,33 @@ def index(request):
 
     #função que irá criar um objeto com os dados tratados na Model
     def pontos():
+        #aqui guardei os dados, que na verdade são TUPLAS, dentro de uma variavel 
         pontuadores = jogador, jogador1, jogador2, jogador3, jogador4
         valores_individuais = []
+
+        # o problema disso é que ficou uma TUPLA dentro de OUTRA TUPLA
 
         for nome, pontuacao in pontuadores:
             valores_individuais.append(nome)
             valores_individuais.append(pontuacao)
-        top = valores_individuais[0], valores_individuais[1], valores_individuais[2], valores_individuais[3], valores_individuais[4], valores_individuais[5]
+        dados_pontuadores = valores_individuais[0], valores_individuais[1], valores_individuais[2], valores_individuais[3], valores_individuais[4], valores_individuais[5], valores_individuais[6], valores_individuais[7], valores_individuais[8], valores_individuais[9]
 
+        # a solução que encontrei foi percorrer um laço FOR e anexar essa tupla em um vetor usando a função APPEND
+        # após isso criei outra variável com as posições dos vetores sendo adicionadas de forma separada
+
+        # !!!! TALVEZ precise refatorar essa parte para evitar desperdício de código !!!!!
+
+        # aqui criei uma variável com o nome individual que recebe uma string vazia, isso vai ser importante para transformar os dados do vetor em String
 
         individual = ""
-
-        for i in range(0, len(top), 2):
-            individual += "{} {}\n".format(top[i], top[i + 1])
         
-        print(individual)
+        # feito isso eu percorri outro laço For usando um Len para verificar o tamanho do vetor e formatei os dados para virarem STRING na variavel 'individual'
 
-
+        for i in range(0, len(dados_pontuadores), 2):
+            individual += "{} {}\n".format(dados_pontuadores[i], dados_pontuadores[i + 1])
+        
+        # ao final de tudo, um objeto é criado no banco jogando um titulo fixo numa string, porém será incrementado Data e Hora posteriormente
+        # o conteudo do POST também é inserido com os valores já tratados...toda vez que essa Função é chamada (assim que cumprir os requisitos) um novo Objeto é criado.
         post_pontos = Post.objects.create(titulo='Lideres em Pontos Por Jogo', conteudo=individual)
         return post_pontos
 
