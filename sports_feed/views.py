@@ -79,10 +79,17 @@ def index(request):
             valores_individuais.append(nome)
             valores_individuais.append(pontuacao)
         top = valores_individuais[0], valores_individuais[1], valores_individuais[2], valores_individuais[3], valores_individuais[4], valores_individuais[5]
-        string_top = "".format(*top)
-        print(string_top)
 
-        post_pontos = Post.objects.create(titulo='Lideres em Pontos Por Jogo', conteudo=string_top)
+
+        individual = ""
+
+        for i in range(0, len(top), 2):
+            individual += "{} {}\n".format(top[i], top[i + 1])
+        
+        print(individual)
+
+
+        post_pontos = Post.objects.create(titulo='Lideres em Pontos Por Jogo', conteudo=individual)
         return post_pontos
 
 
