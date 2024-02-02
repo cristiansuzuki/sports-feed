@@ -107,9 +107,9 @@ def index(request):
         reboteiros = jogador_reb, jogador_reb1, jogador_reb2, jogador_reb3, jogador_reb4
         valores_reb = []
 
-        for nome, pontuacao in reboteiros:
+        for nome, valor in reboteiros:
             valores_reb.append(nome)
-            valores_reb.append(pontuacao)
+            valores_reb.append(valor)
 
         dados_reboteiros = valores_reb[0], valores_reb[1], valores_reb[2], valores_reb[3], valores_reb[4], valores_reb[5], valores_reb[6], valores_reb[7], valores_reb[8], valores_reb[9]
 
@@ -124,16 +124,83 @@ def index(request):
     
     def assistencias():
         assists = jogador_assist, jogador_assist1, jogador_assist2, jogador_assist3, jogador_assist4
+        valores_assist = []
+
+        for nome, valor in assists:
+            valores_assist.append(nome)
+            valores_assist.append(valor)
+        
+        dados_assists = valores_assist[0], valores_assist[1], valores_assist[2], valores_assist[3], valores_assist[4], valores_assist[5], valores_assist[6], valores_assist[7], valores_assist[8], valores_assist[9]
+
+        individual_assist = ""
+
+        for i in range(0, len(dados_assists), 2):
+            individual_assist += "{} {}\n".format(dados_assists[i], dados_assists[i + 1])
+        
+        post_assistencias = Post.objects.create(titulo='Lideres em Assistências Por Jogo', conteudo=individual_assist)
+        
+        return post_assistencias
+    
+    def tocos():
+        tocos = jogador_toco, jogador_toco1, jogador_toco2, jogador_toco3, jogador_toco4
+        valores_tocos = []
+
+        for nome, valor in tocos:
+            valores_tocos.append(nome)
+            valores_tocos.append(valor)
+        
+        dados_tocos = valores_tocos[0], valores_tocos[1], valores_tocos[2], valores_tocos[3], valores_tocos[4], valores_tocos[5], valores_tocos[6], valores_tocos[7], valores_tocos[8], valores_tocos[9]
+
+        individual_tocos = ""
+
+        for i in range(0, len(dados_tocos), 2):
+            individual_tocos += "{} {}\n".format(dados_tocos[i], dados_tocos[i + 1])
+        
+        post_tocos = Post.objects.create(titulo='Lideres em Tocos Por Jogo', conteudo=individual_tocos)
+        
+        return post_tocos
+    
+    def steals():
+        steals = jogador_steal, jogador_steal1, jogador_steal2, jogador_steal3, jogador_steal4
+        valores_steals = []
+        
+        for nome, valor in steals:
+            valores_steals.append(nome)
+            valores_steals.append(valor)
+
+        dados_steals = valores_steals[0], valores_steals[1], valores_steals[2], valores_steals[3], valores_steals[4], valores_steals[5], valores_steals[6], valores_steals[7], valores_steals[8], valores_steals[9]
+        
+        individual_steals = ""
+
+        for i in range(0, len(dados_steals), 2):
+            individual_steals += "{} {}\n".format(dados_steals[i], dados_steals[i + 1])
+        
+        post_steals = Post.objects.create(titulo='Lideres em Steals Por Jogo', conteudo=individual_steals)
+        
+        return post_steals
+    
+    
+
 
         
     # aqui sera inserido a verificação do dia da semana, dependendo do dia será chamada uma função semelhante a acima para ser criado um objeto e postado no Blog de forma automatica.
-    a = 0
+    
+    a = 5
 
     if a == 1:
         pontos()
     
     if a == 2:
         rebotes()
+
+    if a == 3:
+        assistencias()
+
+    if a==4:
+        tocos()
+
+    if a==5:
+        steals()
 
 
     return render(request, 'index.html',{'posts': posts})
