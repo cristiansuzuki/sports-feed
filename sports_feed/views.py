@@ -90,7 +90,7 @@ def index(request):
 
         # aqui criei uma variável com o nome individual que recebe uma string vazia, isso vai ser importante para transformar os dados do vetor em String
 
-        individual = ""
+        individual_pts = ""
         
         # feito isso eu percorri outro laço For usando um Len para verificar o tamanho do vetor e formatei os dados para virarem STRING na variavel 'individual'
 
@@ -99,14 +99,41 @@ def index(request):
         
         # ao final de tudo, um objeto é criado no banco jogando um titulo fixo numa string, porém será incrementado Data e Hora posteriormente
         # o conteudo do POST também é inserido com os valores já tratados...toda vez que essa Função é chamada (assim que cumprir os requisitos) um novo Objeto é criado.
-        post_pontos = Post.objects.create(titulo='Lideres em Pontos Por Jogo', conteudo=individual)
+        post_pontos = Post.objects.create(titulo='Lideres em Pontos Por Jogo', conteudo=individual_pts)
         return post_pontos
+    
 
+    def rebotes():
+        reboteiros = jogador_reb, jogador_reb1, jogador_reb2, jogador_reb3, jogador_reb4
+        valores_reb = []
+
+        for nome, pontuacao in reboteiros:
+            valores_reb.append(nome)
+            valores_reb.append(pontuacao)
+
+        dados_reboteiros = valores_reb[0], valores_reb[1], valores_reb[2], valores_reb[3], valores_reb[4], valores_reb[5], valores_reb[6], valores_reb[7], valores_reb[8], valores_reb[9]
+
+        individual_reb = ""
+
+        for i in range(0, len(dados_reboteiros), 2):
+            individual_reb += "{} {}\n".format(dados_reboteiros[i], dados_reboteiros[i + 1])
+        
+        post_rebotes = Post.objects.create(titulo='Lideres em Rebotes Por Jogo', conteudo=individual_reb)
+
+        return post_rebotes
+    
+    def assistencias():
+        assists = jogador_assist, jogador_assist1, jogador_assist2, jogador_assist3, jogador_assist4
+
+        
     # aqui sera inserido a verificação do dia da semana, dependendo do dia será chamada uma função semelhante a acima para ser criado um objeto e postado no Blog de forma automatica.
-    a = 2
+    a = 0
 
     if a == 1:
         pontos()
+    
+    if a == 2:
+        rebotes()
 
 
     return render(request, 'index.html',{'posts': posts})
