@@ -185,7 +185,7 @@ def index(request):
         
     # aqui sera inserido a verificação do dia da semana, dependendo do dia será chamada uma função semelhante a acima para ser criado um objeto e postado no Blog de forma automatica.
     
-    a = 5
+    a = 0
 
     if a == 1:
         pontos()
@@ -201,6 +201,5 @@ def index(request):
 
     if a==5:
         steals()
-
 
     return render(request, 'index.html',{'posts': posts})
