@@ -6,6 +6,7 @@ from nba_api.stats.static import players
 from nba_api.stats.library.parameters import SeasonAll
 from nba_api.stats import endpoints
 from datetime import timedelta, datetime, date
+import datetime
 from .models import *
 # Create your views here.
 
@@ -180,26 +181,30 @@ def index(request):
         return post_steals
     
     
-
-
-        
     # aqui sera inserido a verificação do dia da semana, dependendo do dia será chamada uma função semelhante a acima para ser criado um objeto e postado no Blog de forma automatica.
     
-    a = 0
+    dia = datetime.datetime.today()
+    print("Dia da semana:" ,dia.weekday())
 
-    if a == 1:
+    if dia == 0:
         pontos()
     
-    if a == 2:
+    if dia == 1:
         rebotes()
 
-    if a == 3:
+    if dia == 2:
         assistencias()
 
-    if a==4:
+    if dia==3:
         tocos()
 
-    if a==5:
+    if dia==4:
         steals()
+    
+    if dia == 5:
+        pass
+
+    if dia == 6:
+        pass
 
     return render(request, 'index.html',{'posts': posts})
