@@ -96,7 +96,7 @@ def index(request):
         # feito isso eu percorri outro laço For usando um Len para verificar o tamanho do vetor e formatei os dados para virarem STRING na variavel 'individual'
 
         for i in range(0, len(dados_pontuadores), 2):
-            individual += "{} {}\n".format(dados_pontuadores[i], dados_pontuadores[i + 1])
+            individual_pts += "{} {}\n".format(dados_pontuadores[i], dados_pontuadores[i + 1])
         
         # ao final de tudo, um objeto é criado no banco jogando um titulo fixo numa string, porém será incrementado Data e Hora posteriormente
         # o conteudo do POST também é inserido com os valores já tratados...toda vez que essa Função é chamada (assim que cumprir os requisitos) um novo Objeto é criado.
@@ -186,25 +186,25 @@ def index(request):
     dia = datetime.datetime.today()
     print("Dia da semana:" ,dia.weekday())
 
-    if dia == 0:
+    if dia.weekday() == 0:
         pontos()
     
-    if dia == 1:
+    if dia.weekday() == 1:
         rebotes()
 
-    if dia == 2:
+    if dia.weekday() == 2:
         assistencias()
 
-    if dia==3:
+    if dia.weekday()==3:
         tocos()
 
-    if dia==4:
+    if dia.weekday()==4:
         steals()
     
-    if dia == 5:
+    if dia.weekday() == 5:
         pass
 
-    if dia == 6:
+    if dia.weekday() == 6:
         pass
 
     return render(request, 'index.html',{'posts': posts})
