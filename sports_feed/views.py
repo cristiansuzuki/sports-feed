@@ -120,7 +120,6 @@ def index(request):
             individual_reb += "{} {}\n".format(dados_reboteiros[i], dados_reboteiros[i + 1])
         
         post_rebotes = Post.objects.create(titulo='Lideres em Rebotes Por Jogo', conteudo=individual_reb)
-
         return post_rebotes
     
     def assistencias():
@@ -138,8 +137,7 @@ def index(request):
         for i in range(0, len(dados_assists), 2):
             individual_assist += "{} {}\n".format(dados_assists[i], dados_assists[i + 1])
         
-        post_assistencias = Post.objects.create(titulo='Lideres em Assistências Por Jogo', conteudo=individual_assist)
-        
+        post_assistencias = Post.objects.create(titulo='Lideres em Assistências Por Jogo', conteudo=individual_assist)  
         return post_assistencias
     
     def tocos():
@@ -158,7 +156,6 @@ def index(request):
             individual_tocos += "{} {}\n".format(dados_tocos[i], dados_tocos[i + 1])
         
         post_tocos = Post.objects.create(titulo='Lideres em Tocos Por Jogo', conteudo=individual_tocos)
-        
         return post_tocos
     
     def steals():
