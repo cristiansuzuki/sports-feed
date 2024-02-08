@@ -183,25 +183,30 @@ def index(request):
     dia = datetime.datetime.today()
     print("Dia da semana:" ,dia.weekday())
 
-    if dia.weekday() == 0:
-        pontos()
+    # if dia.weekday() == 0:
+    #     pontos()
     
-    if dia.weekday() == 1:
-        rebotes()
+    # if dia.weekday() == 1:
+    #     rebotes()
 
-    if dia.weekday() == 2:
-        assistencias()
+    # if dia.weekday() == 2:
+    #     assistencias()
 
-    if dia.weekday()==3:
-        tocos()
+    # if dia.weekday()==3:
+    #     tocos()
 
-    if dia.weekday()==4:
-        steals()
+    # if dia.weekday()==4:
+    #     steals()
     
-    if dia.weekday() == 5:
-        pass
+    # if dia.weekday() == 5:
+    #     pass
 
-    if dia.weekday() == 6:
-        pass
+    # if dia.weekday() == 6:
+    #     pass
+
+    # a = 1
+
+    # if a == 1:
+    #     pontos()
 
     return render(request, 'index.html',{'posts': posts})

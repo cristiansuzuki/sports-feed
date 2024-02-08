@@ -50,11 +50,8 @@
               <a href="#">GITHUB</a>
               <a href="#">API</a>
             </div>
+
             {% for post in posts %}
-            {% comment %} <h1>{{ post.titulo}}</h1>
-            <h1> {{ post.conteudo|linebreaks }}</h1>
-            <h1>----------------------------------------------------</h1>
-        {% endfor %} {% endcomment %}
         
             <div class="content">
                <H1> {{ post.titulo }}</H1>
@@ -62,16 +59,16 @@
                 <thead>
                   <tr>
                     <th scope="col"></th>
-                    <th scope="col">{{ post.conteudo|linebreaks }}</th>
-                    <th scope="col">MÉDIA DE PONTOS</th>
+                    <th scope="col">JOGADOR</th>
+                    <th scope="col">MEDIA DE PONTOS</th>
                     <th scope="col">MAIS INFORMAÇÕES</th>
                   </tr>
                 </thead>
                 <tbody class="table-group-divider">
                   <tr>
                     <th scope="row">1</th>
-                    <td>Luka Doncic</td>
-                    <td>90.00</td>
+                    <td>{{post.conteudo|linebreaks}}</td>
+                    <!-- <td>{{post.conteudo}}</td> -->
                     <td><a href="/luka.html" class="btn btn-secondary" tabindex="-1" role="button" aria-disabled="true">Info</a></td>
                   </tr>
                   <tr>
